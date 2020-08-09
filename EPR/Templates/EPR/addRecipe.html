@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>EPR</title>
+<link href="{% static 'EPR/addRecipeStyles.css' %}" rel="stylesheet">
+<!-- Below is the styling sheet for Free Font Awesome 5 icons. Link: https://fontawesome.com -->
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+
+<!--------------------------------------------------------------------------------------------------------->
+
+
+<div id="info" class="popUp">
+  <!-- This is the top green section -->  
+  <div class="content">
+    <div class="popUpTop">
+      <h2 style="padding-top: 20px; font-family: Arial, Helvetica, sans-serif;">Add Recipe</h2>
+    </div>
+
+    
+    <!-- This is content section -->  
+    <div class="popUpBack">
+      <form name="myForm" action="new/" method="POST" onsubmit="check()">
+        {% csrf_token %}
+        <p><label>Name:</label></p>
+        <input class="inputBox" type="text" placeholder="Recipe Name" name="name" id="name">
+        <p><label><i class="fa fa-shopping-cart"></i> Ingredients: </label></p>
+        <textarea class="inputBox" cols="35" rows="8" name="ingredients" id="ingredients"></textarea><br/>
+        <p><label><i class="fas fa-file-word"></i> Method:</label></p>
+        <textarea class="inputBox"  cols="35" rows="8" name="method" id="method"></textarea><br/>
+        <button class="popUpSubmit" id="Submit" type="submit">Submit</button>
+        <a href="{% url 'index' %}"><div class="popUpSubmit" style="float: right; background-color: green;">Return</div></a>    
+      </form>
+    </div>
+  </div>
+</div>
+
+<!--------------------------------------------------------------------------------------------------------->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    //By default submit button is disabled
+    document.querySelector('#Submit').disabled = true;
+
+    document.querySelector('#method').onkeyup = () => {
+      document.querySelector('#Submit').disabled = false;
+    }
+
+ })
+
+function check(){
+    alert('Recipe SUCCESSFULLY added!')
+    alert('Please NOTE if you wish to add another recipe you must return to the main page and press "add Recipe" again. If you submit another now, an error will occur!')
+}
+
+</script>
+ 
+</body>
